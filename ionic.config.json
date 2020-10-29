@@ -1,0 +1,7 @@
+{
+  "name": "ionic-whatsApp-clone",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

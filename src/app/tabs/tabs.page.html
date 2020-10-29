@@ -1,0 +1,15 @@
+<ion-tabs>
+  <ion-tab-bar slot="bottom">
+    <ng-container *ngFor="let tab of tabs">
+      <ion-tab-button *ngIf="tab.button">
+        <ion-icon [name]="tab.icon"></ion-icon>
+        <ion-label>{{tab.id}}</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button [tab]="tab.id" *ngIf="!tab.button">
+        <ion-icon [name]="tab.icon"></ion-icon>
+        <ion-label>{{tab.id}}</ion-label>
+      </ion-tab-button>
+    </ng-container>
+  </ion-tab-bar>
+</ion-tabs>
