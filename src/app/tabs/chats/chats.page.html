@@ -31,17 +31,20 @@
   </ion-header>
 
   <ion-list>
-    <ion-item button detail="false" *ngFor="let item of [1,2,3,4,5,6,7,8,9,10]">
+    <ion-item button detail="false" *ngFor="let chat of chatsList" [routerLink]="['/chat-detail', chat.id]"
+      routerdirection="forward">
       <ion-avatar slot="start" style="width: 52px;height:52px">
-        <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+        <img [src]="chat.avatar">
       </ion-avatar>
       <ion-label>
-        Hello User
+        {{chat.first_name}} {{chat.last_name}}
         <small class="ion-float-right">
           <ion-text color="medium">17.10.2020</ion-text>
         </small>
         <p>
-          <ion-text color="medium">hello world</ion-text>
+          <ion-text color="medium">
+            {{chat.last_message}}
+          </ion-text>
         </p>
         <p>&nbsp;</p>
       </ion-label>
