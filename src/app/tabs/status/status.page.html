@@ -1,21 +1,54 @@
-<ion-header translucent="true">
+<ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-button>
-        Privacy
+        Settings
       </ion-button>
     </ion-buttons>
 
     <ion-title>Status</ion-title>
   </ion-toolbar>
+  <ion-toolbar *ngIf="!isIos">
+    <ion-searchbar placeholder="Search"></ion-searchbar>
+  </ion-toolbar>
 </ion-header>
 
-<ion-content fullscreen="true">
+<ion-content>
+  <ion-header collapse="condense" *ngIf="isIos">
+    <ion-toolbar>
+      <ion-title size="large">Status</ion-title>
+    </ion-toolbar>
+    <ion-toolbar>
+      <ion-searchbar placeholder="Search"></ion-searchbar>
+    </ion-toolbar>
+  </ion-header>
+
   <ion-list class="status-user-bar">
-    <ion-item lines="none">
-      <ion-label color="primary">
-        <h1>I got you babe</h1>
+    <ion-item lines="none" style="margin-top: 8px;margin-bottom: 8px;">
+      <ion-avatar slot="start" style="width: 58px;height: 58px;">
+        <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+      </ion-avatar>
+      <ion-label>
+        My status
+        <p>Add to my status</p>
       </ion-label>
+
+      <ion-buttons slot="end">
+        <ion-fab-button style="margin-right: 8px;width: 30px;height: 30px;">
+          <ion-icon size="small" name="camera-outline"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-button style="width: 30px;height: 30px;">
+          <ion-icon size="small" name="create-outline"></ion-icon>
+        </ion-fab-button>
+      </ion-buttons>
     </ion-item>
   </ion-list>
+
+  <ion-list class="status-user-bar">
+    <p class="ion-text-center">
+      <ion-text color="medium">No recent updates to show right now.</ion-text>
+    </p>
+  </ion-list>
+
+  <div style="height: 500px;"></div>
 </ion-content>
