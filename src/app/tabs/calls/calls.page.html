@@ -1,9 +1,64 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>calls</ion-title>
+    <ion-buttons slot="start">
+      <ion-button>
+        Change
+      </ion-button>
+    </ion-buttons>
+
+    <ion-segment (ionChange)="segmentChanged($event)" value="all">
+      <ion-segment-button value="all">
+        <ion-label>All</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="missed">
+        <ion-label>Missed</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon slot="icon-only" name="call-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+  <ion-toolbar *ngIf="!isIos">
+    <ion-searchbar placeholder="Search"></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Calls</ion-title>
+    </ion-toolbar>
+    <ion-toolbar>
+      <ion-searchbar placeholder="Search"></ion-searchbar>
+    </ion-toolbar>
+  </ion-header>
 
+  <ion-list>
+    <ion-item *ngFor="let item of [1,2,3,4,5,6,7,8,9,10]">
+      <ion-avatar slot="start">
+        <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+      </ion-avatar>
+      <ion-label>
+        Item Avatar
+        <p>
+          <ion-text color="medium">asdasd</ion-text>
+        </p>
+      </ion-label>
+
+      <small slot="end">
+        <ion-text color="medium">17.10.2020</ion-text>
+      </small>
+      <ion-buttons slot="end" class="ion-no-margin">
+        <ion-button color="primary">
+          <ion-icon slot="icon-only" name="information-circle-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-item>
+  </ion-list>
+
+  <div style="height: 500px;"></div>
 </ion-content>
