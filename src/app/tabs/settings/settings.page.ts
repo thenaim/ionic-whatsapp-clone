@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PlatformService } from '../../services/platform/platform.service';
 
 @Component({
   selector: 'app-settings',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SettingsPage implements OnInit {
 
-  constructor() { }
+  constructor(
+    public platformService: PlatformService
+  ) { }
 
   ngOnInit() {
   }

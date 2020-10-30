@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Config } from '@ionic/angular';
+import { PlatformService } from '../../services/platform/platform.service';
 
 @Component({
   selector: 'app-chats',
@@ -7,13 +7,10 @@ import { Config } from '@ionic/angular';
   styleUrls: ['./chats.page.scss'],
 })
 export class ChatsPage implements OnInit {
-  isIos = false;
 
   constructor(
-    private config: Config
+    public platformService: PlatformService
   ) { }
 
-  ngOnInit() {
-    this.isIos = this.config.get('mode') === 'ios';
-  }
+  ngOnInit() { }
 }

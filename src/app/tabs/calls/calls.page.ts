@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Config } from '@ionic/angular';
+import { PlatformService } from '../../services/platform/platform.service';
 
 @Component({
   selector: 'app-calls',
@@ -7,18 +7,14 @@ import { Config } from '@ionic/angular';
   styleUrls: ['./calls.page.scss'],
 })
 export class CallsPage implements OnInit {
-  isIos = false;
 
   constructor(
-    private config: Config
+    public platformService: PlatformService
   ) { }
 
   segmentChanged(event) {
     console.log(event);
   }
 
-  ngOnInit() {
-    this.isIos = this.config.get('mode') === 'ios';
-  }
-
+  ngOnInit() { }
 }

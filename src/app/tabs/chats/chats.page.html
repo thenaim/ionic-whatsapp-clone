@@ -15,13 +15,13 @@
     </ion-buttons>
   </ion-toolbar>
 
-  <ion-toolbar *ngIf="!isIos">
+  <ion-toolbar *ngIf="platformService.isAndroid">
     <ion-searchbar placeholder="Search"></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-header collapse="condense">
+  <ion-header collapse="condense" *ngIf="platformService.isIOS">
     <ion-toolbar>
       <ion-title size="large">Chats</ion-title>
     </ion-toolbar>

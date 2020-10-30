@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Config } from '@ionic/angular';
+import { PlatformService } from '../../services/platform/platform.service';
 
 @Component({
   selector: 'app-status',
@@ -7,14 +7,10 @@ import { Config } from '@ionic/angular';
   styleUrls: ['./status.page.scss'],
 })
 export class StatusPage implements OnInit {
-  isIos = false;
 
   constructor(
-    private config: Config
+    public platformService: PlatformService
   ) { }
 
-  ngOnInit() {
-    this.isIos = this.config.get('mode') === 'ios';
-  }
-
+  ngOnInit() { }
 }

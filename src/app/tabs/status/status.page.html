@@ -8,13 +8,13 @@
 
     <ion-title>Status</ion-title>
   </ion-toolbar>
-  <ion-toolbar *ngIf="!isIos">
+  <ion-toolbar *ngIf="platformService.isAndroid">
     <ion-searchbar placeholder="Search"></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-header collapse="condense" *ngIf="isIos">
+  <ion-header collapse="condense" *ngIf="platformService.isIOS">
     <ion-toolbar>
       <ion-title size="large">Status</ion-title>
     </ion-toolbar>
