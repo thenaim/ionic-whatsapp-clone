@@ -1,26 +1,115 @@
-ion-footer ion-toolbar {
-    --background: #F6F6F6;
-    background-color: #F6F6F6;
+.user-toolbar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    --min-height: 43px;
+    --padding-start: 0px;
+    padding-left: 45px;
+    padding-right: 90px;
+}
 
-    ion-textarea {
-        margin-top: 6px;
-        margin-bottom: 6px;
-        background-color: #fff;
-        border-radius: 20px;
-        --padding-start: 10px;
+.chats-group {
+    &:last-child {
+        margin-bottom: 20px;
+    }
+
+    .message-item-sliding:first-of-type {
+        .message-container {
+            margin-top: 0px;
+        }
     }
 }
 
+.message-container {
+    position: relative;
+    border-radius: 12px;
+    padding: 4px 8px;
+    margin-top: 12px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    max-width: 70%;
 
+    .text {
+        font-weight: 400;
+        font-size: 14px;
+        white-space: pre-wrap;
 
+        &:after {
+            content: '';
+            width: 52px;
+            height: 12px;
+            display: inline-block;
+            vertical-align: top;
+            visibility: hidden;
+            font-size: 11px;
+        }
+    }
 
+    .time {
+        position: absolute;
+        display: flex;
+        right: 0;
+        bottom: 0;
+        padding: 4px 8px 4px 4px;
+        line-height: 16px;
+        pointer-events: auto;
+        color: var(--ion-color-medium);
+    }
+}
 
+.message-user,
+.message-me {
+    --background: transparent;
+    --padding-start: 8px;
+    --padding-end: 0px;
+    --ion-safe-area-left: 0px;
+    --min-height: 32px;
+    --border-width: 0;
+}
 
+.message-user {
+    .message-container {
+        margin-left: 8px;
+        background-color: #FAFAFA;
+    }
+    .user-avatar {
+        position: sticky;
+        top: 0px;
+        margin-right: 0px;
+        margin-inline-end: 8px;
+        width: 26px;
+        height: 26px;
+    }
+}
 
+.message-me {
+    .message-container {
+        background-color: #DCF7C5;
 
+        .text {
+            &:after {
+                width: 72px !important;
+            }
+        }
 
+        .time {
+            small {
+                margin-right: 2px;
+                line-height: 16px;
+            }
 
-.message-divider {
+            ion-icon {
+                font-size: 16px;
+            }
+        }
+    }
+}
+
+.chats-group-divider {
     position: relative;
     background-color: #DDDDE9;
     z-index: 4;
@@ -52,101 +141,6 @@ ion-footer ion-toolbar {
     }
 }
 
-.messages-item-group {
-    &:last-child {
-        margin-bottom: 20px;
-    }
-
-    .message-item-sliding:first-of-type {
-        .message-container {
-            margin-top: 0px;
-        }
-    }
-
-    .message-user,
-    .message-me {
-        --background: transparent;
-        --padding-start: 8px;
-        --padding-end: 0px;
-        --ion-safe-area-left: 0px;
-        --min-height: 32px;
-        --border-width: 0;
-    }
-
-    .message-user {
-        .user-avatar {
-            position: sticky;
-            top: 0px;
-            margin-right: 0px;
-            margin-inline-end: 8px;
-            width: 26px;
-            height: 26px;
-        }
-    }
-
-    .message-user {
-        .message-container {
-            margin-left: 8px;
-            background-color: #FAFAFA;
-        }
-    }
-
-    .message-me {
-        .message-container {
-            background-color: #DCF7C5;
-        }
-    }
-
-    .message-container {
-        position: relative;
-        border-radius: 12px;
-
-        padding: 4px 8px;
-        margin-top: 12px;
-        margin-left: 0px;
-        margin-right: 0px;
-        margin-inline-start: 0px;
-        margin-inline-end: 0px;
-        max-width: 70%;
-
-
-        .text {
-            font-weight: 400;
-            font-size: 14px;
-            white-space: pre-wrap;
-
-            &:after {
-                content: '';
-                width: 3.4em;
-                height: 12px;
-                display: inline-block;
-                vertical-align: top;
-                visibility: hidden;
-                font-size: 11px;
-            }
-        }
-
-        .time {
-            position: absolute;
-            right: 0;
-            bottom: 0;
-            padding: 4px 8px 4px 4px;
-            line-height: 14px;
-            pointer-events: auto;
-            color: var(--ion-color-medium);
-        }
-    }
-}
-
-.message-textarea {
-    --background: var(--ion-color-light);
-    border-radius: 20px;
-    --padding-top: 10px;
-    --padding-end: 10px;
-    --padding-bottom: 10px;
-    --padding-start: 10px;
-}
-
 .user-last-message {
     &::after {
         content: "";
@@ -162,5 +156,18 @@ ion-footer ion-toolbar {
         transform: rotate(112deg);
         bottom: -4px;
         left: -4px;
+    }
+}
+
+ion-footer ion-toolbar {
+    --background: #F6F6F6;
+    background-color: #F6F6F6;
+
+    ion-textarea {
+        margin-top: 6px;
+        margin-bottom: 6px;
+        background-color: #fff;
+        border-radius: 20px;
+        --padding-start: 10px;
     }
 }

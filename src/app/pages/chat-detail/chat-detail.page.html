@@ -1,10 +1,10 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button [text]="''" defaultHref="/tabs/chats"></ion-back-button>
+      <ion-back-button text="" defaultHref="/tabs/chats"></ion-back-button>
     </ion-buttons>
 
-    <ion-item lines="none" *ngIf="user">
+    <ion-item lines="none" class="user-toolbar" *ngIf="user">
       <ion-avatar slot="start">
         <img [src]="user.avatar">
       </ion-avatar>
@@ -29,11 +29,11 @@
 
 <ion-content [scrollY]="isAllowScroll" [scrollEvents]="true" (ionScrollStart)="logScrollStart()"
   (ionScroll)="logScrolling($event)" (ionScrollEnd)="logScrollEnd()"
-  style="--background: url(../assets/img/chat-bg.svg);background-color: transparent;">
-  <ion-item-group class="messages-item-group" *ngFor="let chat of chats">
+  style="--background: url(../assets/img/{{imageBg}}.svg);background-color: {{imageBg ? transparent : var(--ion-background-color, #fff) }};">
+  <ion-item-group class="chats-group" *ngFor="let chat of chats">
 
     <!-- Date message divider -->
-    <ion-item-divider sticky class="message-divider" [ngClass]="{'scrolling': pageScrolling}">
+    <ion-item-divider sticky class="chats-group-divider" [ngClass]="{'scrolling': pageScrolling}">
       <ion-label>
         {{chat.date}}
       </ion-label>
@@ -59,10 +59,10 @@
         <ion-item lines="none" class="message-me">
           <div class="message-container" slot="end">
             <span class="text" [innerHTML]="message.message"></span>
-            <small class="time">
-              12:45
-              <ion-icon name="checkmark-done-outline"></ion-icon>
-            </small>
+            <div class="time">
+              <small>12:45</small>
+              <ion-icon color="primary" name="checkmark-done-outline"></ion-icon>
+            </div>
           </div>
         </ion-item>
       </ng-container>

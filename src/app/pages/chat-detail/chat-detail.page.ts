@@ -25,6 +25,7 @@ export class ChatDetailPage implements OnInit, OnDestroy {
   userId = null;
   user: CurrentUserInterface;
   chats: any[] = [];
+  imageBg = 'chat-bg';
 
   messageControl: FormControl = new FormControl('', [
     Validators.required
@@ -113,29 +114,32 @@ export class ChatDetailPage implements OnInit, OnDestroy {
     });
   }
 
-  ngOnInit(): void {
-    this.faker.getFaker().then(faker => {
+  async dataInit() {
+    return this.faker.getFaker().then(faker => {
       // generate fake message data
-      this.chats = Array.apply(null, Array(4)).map(() => {
+      for (let chatIndex = 0; chatIndex < 4; chatIndex++) {
         const chat = {
           date: faker.date.weekday(),
           chats: []
         };
 
-        chat.chats = Array.apply(null, Array(5)).map(() => {
+        for (let chatsIndex = 0; chatsIndex < 5; chatsIndex++) {
           const gender = faker.random.arrayElements([1, 0])[0];
-          return {
+          chat.chats.push({
             message: faker.lorem.sentences(faker.random.arrayElement([1, 2, 3])),
             date: faker.date.recent(),
             first_name: faker.name.firstName(gender),
             last_name: faker.name.lastName(gender),
             avatar: faker.internet.avatar(),
             type: faker.random.arrayElement(['user', 'me'])
-          };
-        });
+          });
+        }
 
-        return chat;
-      });
+        this.chats.push(chat);
+        setTimeout(() => {
+          this.content.scrollToBottom(0);
+        });
+      }
 
       // generate current user, but set id from url param
       this.user = {
@@ -146,12 +150,11 @@ export class ChatDetailPage implements OnInit, OnDestroy {
         avatar: faker.internet.avatar(),
         last_message: faker.lorem.sentence()
       };
-
-      // scroll to bottom
-      setTimeout(() => {
-        this.content.scrollToBottom(0);
-      });
     });
+  }
+
+  ngOnInit(): void {
+    this.dataInit();
 
     // subscribe to scrolling event
     this.subscriptions.push(
