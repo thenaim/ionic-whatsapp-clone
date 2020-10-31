@@ -1,0 +1,11 @@
+<ion-item-group class="chats-group" *ngFor="let chat of chats">
+
+  <!-- Date message divider -->
+  <ion-item-divider sticky class="chats-group-divider" [ngClass]="{'scrolling': isPageScrolling}">
+    <ion-label>
+      {{chat.date}}
+    </ion-label>
+  </ion-item-divider>
+
+  <app-chat-item [chats]="chat.chats"></app-chat-item>
+</ion-item-group>

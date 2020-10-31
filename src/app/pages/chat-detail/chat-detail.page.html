@@ -30,51 +30,8 @@
 <ion-content [scrollY]="isAllowScroll" [scrollEvents]="true" (ionScrollStart)="logScrollStart()"
   (ionScroll)="logScrolling($event)" (ionScrollEnd)="logScrollEnd()"
   style="--background: url(../assets/img/{{imageBg}}.svg);background-color: {{imageBg ? 'transparent' : 'var(--ion-background-color, #fff)' }};">
-  <ion-item-group class="chats-group" *ngFor="let chat of chats">
 
-    <!-- Date message divider -->
-    <ion-item-divider sticky class="chats-group-divider" [ngClass]="{'scrolling': pageScrolling}">
-      <ion-label>
-        {{chat.date}}
-      </ion-label>
-    </ion-item-divider>
-
-    <ion-item-sliding class="message-item-sliding"
-      *ngFor="let message of chat.chats; let index = index; let last = last" #slidingItem
-      (ionDrag)="messageDraged($event, slidingItem)">
-
-      <!-- User message -->
-      <ng-container *ngIf="message.type === 'user'">
-        <ion-item lines="none" class="message-user"
-          [ngClass]="{'user-last-message': chat.chats[index + 1]?.type === 'me' || last}">
-          <div class="message-container">
-            <span class="text" [innerHTML]="message.message"></span>
-            <small class="time">12:45</small>
-          </div>
-        </ion-item>
-      </ng-container>
-
-      <!-- My message -->
-      <ng-container *ngIf="message.type === 'me'">
-        <ion-item lines="none" class="message-me">
-          <div class="message-container" slot="end">
-            <span class="text" [innerHTML]="message.message"></span>
-            <div class="time">
-              <small>12:45</small>
-              <ion-icon color="primary" name="checkmark-done-outline"></ion-icon>
-            </div>
-          </div>
-        </ion-item>
-      </ng-container>
-
-      <!-- Reply slide -->
-      <ion-item-options side="end" class="no-border">
-        <ion-item-option disabled style="--background: var(--ion-item-background);">
-          <ion-icon slot="icon-only" name="arrow-undo-outline" color="primary"></ion-icon>
-        </ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
-  </ion-item-group>
+  <app-chat-group [chats]="chats" [isPageScrolling]="pageScrolling"></app-chat-group>
 </ion-content>
 
 <ion-footer class="ion-no-border">

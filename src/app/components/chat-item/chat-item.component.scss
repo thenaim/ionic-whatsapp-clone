@@ -1,0 +1,104 @@
+.message-container {
+    position: relative;
+    border-radius: 12px;
+    padding: 4px 8px;
+    margin-top: 12px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    max-width: 70%;
+
+    .text {
+        font-weight: 400;
+        font-size: 14px;
+        white-space: pre-wrap;
+
+        &:after {
+            content: '';
+            width: 52px;
+            height: 12px;
+            display: inline-block;
+            vertical-align: top;
+            visibility: hidden;
+            font-size: 11px;
+        }
+    }
+
+    .time {
+        position: absolute;
+        display: flex;
+        right: 0;
+        bottom: 0;
+        padding: 4px 8px 4px 4px;
+        line-height: 16px;
+        pointer-events: auto;
+        color: var(--ion-color-medium);
+    }
+}
+
+.message-user,
+.message-me {
+    --background: transparent;
+    --padding-start: 8px;
+    --padding-end: 0px;
+    --ion-safe-area-left: 0px;
+    --min-height: 32px;
+    --border-width: 0;
+}
+
+.message-user {
+    .message-container {
+        margin-left: 8px;
+        background-color: #FAFAFA;
+    }
+    .user-avatar {
+        position: sticky;
+        top: 0px;
+        margin-right: 0px;
+        margin-inline-end: 8px;
+        width: 26px;
+        height: 26px;
+    }
+}
+
+.message-me {
+    .message-container {
+        background-color: #DCF7C5;
+
+        .text {
+            &:after {
+                width: 72px !important;
+            }
+        }
+
+        .time {
+            small {
+                margin-right: 2px;
+                line-height: 16px;
+            }
+
+            ion-icon {
+                font-size: 16px;
+            }
+        }
+    }
+}
+
+.user-last-message {
+    &::after {
+        content: "";
+        position: absolute;
+        border: 0 solid transparent;
+        border-top-color: transparent;
+        border-top-style: solid;
+        border-top-width: 0px;
+        border-top: 9px solid #FAFAFA;
+        border-radius: 0 20px 0;
+        width: 15px;
+        height: 30px;
+        transform: rotate(112deg);
+        bottom: -4px;
+        left: -4px;
+    }
+}

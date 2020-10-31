@@ -7,14 +7,17 @@ import { IonicModule } from '@ionic/angular';
 import { ChatDetailPageRoutingModule } from './chat-detail-routing.module';
 
 import { ChatDetailPage } from './chat-detail.page';
+import { ChatGroupModule } from '../../components/chat-group/chat-group.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ChatDetailPageRoutingModule
+    ChatDetailPageRoutingModule,
+
+    ChatGroupModule
   ],
   declarations: [ChatDetailPage]
 })
-export class ChatDetailPageModule {}
+export class ChatDetailPageModule { }
