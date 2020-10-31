@@ -29,7 +29,7 @@
 
 <ion-content [scrollY]="isAllowScroll" [scrollEvents]="true" (ionScrollStart)="logScrollStart()"
   (ionScroll)="logScrolling($event)" (ionScrollEnd)="logScrollEnd()"
-  style="--background: url(../assets/img/{{imageBg}}.svg);background-color: {{imageBg ? transparent : var(--ion-background-color, #fff) }};">
+  style="--background: url(../assets/img/{{imageBg}}.svg);background-color: {{imageBg ? 'transparent' : 'var(--ion-background-color, #fff)' }};">
   <ion-item-group class="chats-group" *ngFor="let chat of chats">
 
     <!-- Date message divider -->
