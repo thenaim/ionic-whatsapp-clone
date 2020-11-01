@@ -1,3 +1,9 @@
+<a href="https://github.com/thenaim/ionic-whatsapp-clone">
+  <p align="center">
+    <img src="https://i.imgur.com/QcWvgs6.png">
+  </p>
+</a>
+
 <h2 align="center">
   Introducing a open source WhatsApp app clone.
 </h2>
@@ -68,6 +74,12 @@ In pursuit of [adaptive styling](https://ionicframework.com/docs/core-concepts/f
 | **iOS** | 11.0+ |
 
 See [Ionic Docs](https://ionicframework.com/docs/reference/browser-support) for more information.
+
+## WhatsApp UI Screens Sketch
+
+Figma: [WhatsApp UI](https://www.figma.com/community/file/874576344344319149)
+
+Creator: [Pixsellz](https://pixsellz.io/)
 
 ## Contributors
 
