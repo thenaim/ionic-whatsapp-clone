@@ -26,7 +26,9 @@ npx cap add ios
 
 # Add Android
 npx cap add android
-```
+
+# Browser (native not support)
+ionic serve
 
 # Run Capacitor or see [docs](https://ionicframework.com/docs/cli/commands/capacitor-run)
 ```bash
