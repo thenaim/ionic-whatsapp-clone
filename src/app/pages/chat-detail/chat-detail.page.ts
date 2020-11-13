@@ -3,7 +3,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { IonContent, IonItemSliding } from '@ionic/angular';
 import { BehaviorSubject, SubscriptionLike } from 'rxjs';
-import { debounceTime, tap } from 'rxjs/operators';
+import { debounceTime, map, skipWhile, takeUntil, takeWhile, tap } from 'rxjs/operators';
 
 import { FakerService } from '../../services/faker/faker.service';
 
@@ -31,7 +31,8 @@ export class ChatDetailPage implements OnInit, OnDestroy {
     Validators.required
   ]);
 
-  pageScrolling = false;
+  isPageScrolling = false;
+  isAllowScrollEvents = false;
   isAllowScroll = true;
   scrolling: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
@@ -114,67 +115,41 @@ export class ChatDetailPage implements OnInit, OnDestroy {
     });
   }
 
-  async dataInit() {
-    return this.faker.getFaker().then(faker => {
-      // generate fake message data
-      for (let chatIndex = 0; chatIndex < 4; chatIndex++) {
-        const chat = {
-          date: faker.date.weekday(),
-          chats: []
-        };
-
-        for (let chatsIndex = 0; chatsIndex < 5; chatsIndex++) {
-          const gender = faker.random.arrayElements([1, 0])[0];
-          chat.chats.push({
-            message: faker.lorem.sentences(faker.random.arrayElement([1, 2, 3])),
-            date: faker.date.recent(),
-            first_name: faker.name.firstName(gender),
-            last_name: faker.name.lastName(gender),
-            avatar: faker.internet.avatar(),
-            type: faker.random.arrayElement(['user', 'me'])
-          });
-        }
-
-        this.chats.push(chat);
-        setTimeout(() => {
+  dataInit() {
+    return new Promise((resolve) => {
+      this.faker.generateUser(this.userId).then((user) => this.user = user);
+      this.faker.generateChat(4, 8).then((chats) => {
+        chats.forEach((element) => {
+          this.chats.push(element);
           this.content.scrollToBottom(0);
         });
-      }
+        this.content.scrollToBottom(0);
+      });
 
-      // generate current user, but set id from url param
-      this.user = {
-        id: this.userId,
-        first_name: faker.name.firstName(1),
-        last_name: faker.name.lastName(1),
-        email: faker.internet.email(),
-        avatar: faker.internet.avatar(),
-        last_message: faker.lorem.sentence()
-      };
+      setTimeout(() => {
+        resolve();
+      });
     });
   }
 
   ngOnInit(): void {
-    this.dataInit();
-
-    // subscribe to scrolling event
     this.subscriptions.push(
       this.scrolling.pipe(
-        tap((scrol => {
-          if (scrol) {
-            this.pageScrolling = scrol;
+        tap(scroll => {
+          if (scroll) {
+            this.isPageScrolling = scroll;
           }
-        })),
-        debounceTime(400)).subscribe(res => {
-          this.pageScrolling = res;
-        })
+        }),
+        debounceTime(1000),
+      ).subscribe(res => this.isPageScrolling = res)
     );
+
+    this.dataInit()
+      .then(() => this.content.scrollToBottom(0))
+      .then(() => setTimeout(() => this.isAllowScrollEvents = true));
   }
 
-  ionViewDidEnter() {
-    setTimeout(() => {
-      this.content.scrollToBottom(0);
-    });
-  }
+  ionViewDidEnter() { }
 
   ngOnDestroy(): void {
     this.subscriptions.forEach(subscription => subscription.unsubscribe());

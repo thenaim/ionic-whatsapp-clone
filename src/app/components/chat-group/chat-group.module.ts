@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
+import { MomentModule } from 'ngx-moment';
+
 import { ChatGroupComponent } from '../../components/chat-group/chat-group.component';
 import { ChatItemComponent } from '../../components/chat-item/chat-item.component';
 
@@ -12,6 +14,7 @@ import { ChatItemComponent } from '../../components/chat-item/chat-item.componen
     CommonModule,
     FormsModule,
     IonicModule,
+    MomentModule,
   ],
   declarations: [ChatGroupComponent, ChatItemComponent],
   exports: [ChatGroupComponent, ChatItemComponent]

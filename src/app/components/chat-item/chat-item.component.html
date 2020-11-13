@@ -7,7 +7,7 @@
       [ngClass]="{'user-last-message': chats[index + 1]?.type === 'me' || last}">
       <div class="message-container">
         <span class="text" [innerHTML]="message.message"></span>
-        <small class="time">12:45</small>
+        <small class="time">{{message.date | amDateFormat:'HH:mm'}}</small>
       </div>
     </ion-item>
   </ng-container>
@@ -18,7 +18,7 @@
       <div class="message-container" slot="end">
         <span class="text" [innerHTML]="message.message"></span>
         <div class="time">
-          <small>12:45</small>
+          <small>{{message.date | amDateFormat:'HH:mm'}}</small>
           <ion-icon color="primary" name="checkmark-done-outline"></ion-icon>
         </div>
       </div>

@@ -27,11 +27,11 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [scrollY]="isAllowScroll" [scrollEvents]="true" (ionScrollStart)="logScrollStart()"
+<ion-content [scrollY]="isAllowScroll" [scrollEvents]="isAllowScrollEvents" (ionScrollStart)="logScrollStart()"
   (ionScroll)="logScrolling($event)" (ionScrollEnd)="logScrollEnd()"
-  style="--background: url(../assets/img/{{imageBg}}.svg);background-color: {{imageBg ? 'transparent' : 'var(--ion-background-color, #fff)' }};">
+  style="--background: url(../assets/img/bg/{{imageBg}}.svg);background-color: {{imageBg ? 'transparent' : 'var(--ion-background-color, #fff)' }};">
 
-  <app-chat-group [chats]="chats" [isPageScrolling]="pageScrolling"></app-chat-group>
+  <app-chat-group [chats]="chats" [isPageScrolling]="isPageScrolling"></app-chat-group>
 </ion-content>
 
 <ion-footer class="ion-no-border">
